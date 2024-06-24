@@ -1,32 +1,34 @@
 ﻿@inherits RadzenComponentWithChildren
-@if (visible)
-{
-    <div @ref="@Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()" aria-live="polite">
-        <div class="rz-alert-item">
-            @if (ShowIcon)
-            {
-               <RadzenIcon Icon="@GetIcon()" IconColor="@IconColor" Class="rz-alert-icon" />
-            }
-            <div class="rz-alert-message">
-                @if (!string.IsNullOrEmpty(Title))
+<div aria-live="polite" aria-relevant="all">
+    @if (visible)
+    {
+        <div @ref="@Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()" >
+            <div class="rz-alert-item">
+                @if (ShowIcon)
                 {
-                <div class="rz-alert-title">@Title</div>
+                <RadzenIcon Icon="@GetIcon()" IconColor="@IconColor" Class="rz-alert-icon" />
                 }
-                <div class="rz-alert-content">
-                    @if (ChildContent != null)
+                <div class="rz-alert-message">
+                    @if (!string.IsNullOrEmpty(Title))
                     {
-                        @ChildContent
+                    <div class="rz-alert-title">@Title</div>
                     }
-                    else
-                    {
-                        @Text
-                    }
+                    <div class="rz-alert-content">
+                        @if (ChildContent != null)
+                        {
+                            @ChildContent
+                        }
+                        else
+                        {
+                            @Text
+                        }
+                    </div>
                 </div>
             </div>
+            @if (AllowClose)
+            {
+                <RadzenButton Click=@OnClose Icon="close" Variant="Variant.Text" ButtonStyle="@GetCloseButtonStyle()" Shade="@GetCloseButtonShade()" Size="@GetCloseButtonSize()" />
+            }
         </div>
-        @if (AllowClose)
-        {
-            <RadzenButton Click=@OnClose Icon="close" Variant="Variant.Text" ButtonStyle="@GetCloseButtonStyle()" Shade="@GetCloseButtonShade()" Size="@GetCloseButtonSize()" />
-        }
-    </div>
-}
+    }
+</div>
