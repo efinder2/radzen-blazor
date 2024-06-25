@@ -5,7 +5,7 @@
     var classes = GetMessageCssClasses();
 
    <div class="rz-notification-message rz-growl " style="width: 250px;z-index: 1002;position:static;@(Message.Click != null || Message.CloseOnClick ? "cursor: pointer;" : "") @Style">
-        <div aria-live="polite" class="rz-growl-item-container rz-state-highlight @classes.Item1">
+        <div class="rz-growl-item-container rz-state-highlight @classes.Item1">
             <div class="rz-growl-item">
                 <div class="rz-growl-icon-close rzi rzi-times" @onclick="@Close" style="cursor:pointer"></div>
                 <span class="rz-growl-image rzi @classes.Item2" @onclick="NotificationClicked"></span>
@@ -19,27 +19,27 @@
     </div>
 }
 @code {
-   Tuple<string, string> GetMessageCssClasses()
-   {
-      if (Message.Severity == NotificationSeverity.Error)
-      {
-         return new Tuple<string, string>("rz-growl-message-error", "rzi-times");
-      }
-      else if (Message.Severity == NotificationSeverity.Info)
-      {
-         return new Tuple<string, string>("rz-growl-message-info", "rzi-info-circle");
-      }
-      else if (Message.Severity == NotificationSeverity.Success)
-      {
-         return new Tuple<string, string>("rz-growl-message-success", "rzi-check");
-      }
-      else if (Message.Severity == NotificationSeverity.Warning)
-      {
-         return new Tuple<string, string>("rz-growl-message-warn", "rzi-exclamation-triangle");
-      }
+    Tuple<string, string> GetMessageCssClasses()
+    {
+        if (Message.Severity == NotificationSeverity.Error)
+        {
+            return new Tuple<string, string>("rz-growl-message-error", "rzi-times");
+        }
+        else if (Message.Severity == NotificationSeverity.Info)
+        {
+            return new Tuple<string, string>("rz-growl-message-info", "rzi-info-circle");
+        }
+        else if (Message.Severity == NotificationSeverity.Success)
+        {
+            return new Tuple<string, string>("rz-growl-message-success", "rzi-check");
+        }
+        else if (Message.Severity == NotificationSeverity.Warning)
+        {
+            return new Tuple<string, string>("rz-growl-message-warn", "rzi-exclamation-triangle");
+        }
 
-      return new Tuple<string, string>("", "");
-   }
+        return new Tuple<string, string>("", "");
+    }
 
    [Inject] private NotificationService Service { get; set; }
 
